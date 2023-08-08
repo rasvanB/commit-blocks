@@ -11,23 +11,25 @@ const SearchUser = () => {
   const [username, setUsername] = useState("");
   const router = useRouter();
   return (
-    <div className="w-[300px] flex flex-col gap-3">
-      <Label className="text-white">Username</Label>
+    <form
+      className="w-[300px] flex flex-col gap-3"
+      onSubmit={(e) => {
+        e.preventDefault();
+        router.push(`?username=${username}`);
+      }}
+    >
+      <Label className="text-white">Enter your Github username</Label>
       <Input
         placeholder="username..."
-        className="text-muted-foreground"
         minLength={1}
         maxLength={39}
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
-      <Button
-        variant={"default"}
-        onClick={() => router.push(`?username=${username}`)}
-      >
+      <Button variant={"default"} type="submit">
         Search
       </Button>
-    </div>
+    </form>
   );
 };
 
