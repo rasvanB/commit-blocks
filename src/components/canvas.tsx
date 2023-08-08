@@ -85,7 +85,7 @@ const ThreeCanvas = ({ contributionDays }: { contributionDays: Day[] }) => {
       </div>
     );
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full bg-backgroundImage bg-no-repeat bg-cover backdrop-blur-3xl">
       <Canvas camera={{ position: [45, 40, 0] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} />
