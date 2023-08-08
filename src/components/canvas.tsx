@@ -2,7 +2,13 @@
 import { newShade } from "@/lib/utils";
 import { Day } from "@/utils/fetch";
 import { useAtom } from "jotai";
-import { MapControls, useTexture } from "@react-three/drei";
+import {
+  FirstPersonControls,
+  FlyControls,
+  MapControls,
+  OrbitControls,
+  useTexture,
+} from "@react-three/drei";
 import { Canvas, MeshProps } from "@react-three/fiber";
 import { useState } from "react";
 import { hoveredDayAtom } from "@/utils/atoms";
@@ -84,7 +90,8 @@ const ThreeCanvas = ({ contributionDays }: { contributionDays: Day[] }) => {
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} />
         <ContributionMap contributionDays={contributionDays} />
-        <MapControls
+        <OrbitControls
+          enableDamping
           maxDistance={50}
           minDistance={15}
           enablePan={false}
