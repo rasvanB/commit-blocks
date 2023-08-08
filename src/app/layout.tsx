@@ -13,8 +13,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <main className="bg-neutral-950 w-screen h-screen flex items-center justify-center relative">
+      <body className="dark">
+        <main className="bg-background w-screen h-screen flex items-center justify-center relative">
           {children}
         </main>
       </body>
