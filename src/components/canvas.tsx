@@ -1,27 +1,41 @@
 "use client";
+import { newShade } from "@/lib/utils";
 import { Day } from "@/utils/fetch";
-import { OrbitControls } from "@react-three/drei";
+import { useAtom } from "jotai";
+import { MapControls, useTexture } from "@react-three/drei";
 import { Canvas, MeshProps } from "@react-three/fiber";
 import { useState } from "react";
+import { hoveredDayAtom } from "@/utils/atoms";
 
 const MAX_HEIGHT = 5;
 
-function Box(
-  props: MeshProps & {
-    color: string;
-    size: [number, number, number];
-  }
-) {
+function Box({
+  size,
+  day,
+  ...other
+}: {
+  size: [number, number, number];
+  day: Day;
+} & MeshProps) {
   const [hovered, setHover] = useState(false);
+  const [, setHoveredDay] = useAtom(hoveredDayAtom);
   return (
     <mesh
-      {...props}
+      {...other}
       scale={1}
-      onPointerOver={() => setHover(true)}
-      onPointerLeave={() => setHover(false)}
+      onPointerEnter={(e) => {
+        e.stopPropagation();
+        setHover(true);
+        setHoveredDay(day);
+      }}
+      onPointerLeave={(e) => {
+        setHover(false);
+      }}
     >
-      <boxGeometry args={props.size} />
-      <meshStandardMaterial color={props.color} />
+      <boxGeometry args={size} />
+      <meshStandardMaterial
+        color={hovered ? newShade(day.color, 50) : day.color}
+      />
     </mesh>
   );
 }
@@ -39,7 +53,7 @@ const ContributionMap = ({ contributionDays }: { contributionDays: Day[] }) => {
         const height = (day.contributionCount / maxContributions) * MAX_HEIGHT;
         return (
           <Box
-            color={day.color}
+            day={day}
             key={i}
             size={[1, height, 1]}
             position={[i % ROWS, height / 2 + 2.01, Math.floor(i / ROWS)]}
@@ -70,7 +84,7 @@ const ThreeCanvas = ({ contributionDays }: { contributionDays: Day[] }) => {
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} />
         <ContributionMap contributionDays={contributionDays} />
-        <OrbitControls maxDistance={30} minDistance={15} enablePan={false} />
+        <MapControls maxDistance={50} minDistance={15} enablePan={false} />
       </Canvas>
     </div>
   );
