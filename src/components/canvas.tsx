@@ -29,11 +29,6 @@ const ThreeCanvas = ({ contributionDays }: { contributionDays: Day[] }) => {
           maxDistance={50}
           minDistance={15}
           enablePan={false}
-          mouseButtons={{
-            LEFT: 0,
-            MIDDLE: 1,
-            RIGHT: 2,
-          }}
         />
       </Canvas>
     </div>
