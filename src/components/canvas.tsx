@@ -4,6 +4,7 @@ import { type Day } from "@/utils/fetch";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import ContributionMap from "./contribution-map";
+import Error from "./error";
 
 const ThreeCanvas = ({ contributionDays }: { contributionDays: Day[] }) => {
   const hasContributions = contributionDays.some(
@@ -11,9 +12,11 @@ const ThreeCanvas = ({ contributionDays }: { contributionDays: Day[] }) => {
   );
   if (!hasContributions)
     return (
-      <div className="text-white text-center">
-        No contributions in the last year!
-      </div>
+      <Error
+        error={{
+          title: "No contributions in the last year.",
+        }}
+      />
     );
   return (
     <div className="w-full h-full bg-backgroundImage bg-no-repeat bg-cover backdrop-blur-3xl">

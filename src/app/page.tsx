@@ -1,5 +1,6 @@
 import ThreeCanvas from "@/components/canvas";
 import DayInfo from "@/components/day-info";
+import Error from "@/components/error";
 import SearchUser from "@/components/search-user";
 import UserInfo from "@/components/user-info";
 import { fetchContributions } from "@/utils/fetch";
@@ -15,9 +16,18 @@ export default async function Home({
         <SearchUser />
       </>
     );
+
   const data = await fetchContributions(searchParams.username);
 
-  if (!data) return <div className="text-white">User not found</div>;
+  if (!data)
+    return (
+      <Error
+        error={{
+          title: "User not found",
+          message: "Please check the username and try again.",
+        }}
+      />
+    );
 
   return (
     <>
