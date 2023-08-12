@@ -1,4 +1,5 @@
 import ThreeCanvas from "@/components/canvas";
+import Controls from "@/components/controls";
 import DayInfo from "@/components/day-info";
 import Error from "@/components/error";
 import SearchUser from "@/components/search-user";
@@ -32,6 +33,7 @@ export default async function Home({
   return (
     <>
       <UserInfo username={searchParams.username} avatarUrl={data.avatarUrl} />
+      <Controls />
       <ThreeCanvas contributionDays={data.contributionDays} />
       <DayInfo />
     </>
