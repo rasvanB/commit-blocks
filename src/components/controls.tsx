@@ -16,10 +16,10 @@ const Controls = () => {
       onOpenChange={setIsOpen}
       className="w-[175px] space-y-2 absolute top-3 right-3 z-[100] rounded-md"
     >
-      <div className="flex items-center justify-end space-x-4 px-2 py-0.5 bg-card rounded-md outline outline-1 outline-accent">
+      <div className="w-fit flex items-center justify-end space-x-4 px-2 py-0.5 bg-card rounded-md outline outline-1 outline-accent">
         <h4 className="text-sm font-semibold">Controls</h4>
         <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="sm">
+          <Button variant="ghost" size="sm" className="p-1 rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1.2em"
