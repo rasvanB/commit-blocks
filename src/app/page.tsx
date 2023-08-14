@@ -13,9 +13,19 @@ export default async function Home({
 }) {
   if (!searchParams.username)
     return (
-      <>
+      <div className="flex flex-col items-center gap-5">
+        <div className="text-center flex flex-col items-center gap-3">
+          <h2 className="text-3xl font-semibold">
+            Your GitHub Journey, Visualized in 3D Blocks
+          </h2>
+          <p className="max-w-md text-muted-foreground text-justify">
+            {
+              "See your commits transformed into humble 3D blocks, a simple yet captivating way to appreciate your progress and hard work."
+            }
+          </p>
+        </div>
         <SearchUser />
-      </>
+      </div>
     );
 
   const data = await fetchContributions(searchParams.username);
