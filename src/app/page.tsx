@@ -20,7 +20,7 @@ export default async function Home({
           </h2>
           <p className="max-w-md text-muted-foreground text-justify">
             {
-              "See your commits transformed into humble 3D blocks, a simple yet captivating way to appreciate your progress and hard work."
+              "See your commits transformed into 3D blocks, a simple yet captivating way to appreciate your progress and hard work."
             }
           </p>
         </div>
